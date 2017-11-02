@@ -1,0 +1,2 @@
+# hidrometeorologia
+La oficina de pronóstico y alertas del IDEAM, requiere de una aplicación móvil que permita a un observador en campo, registrar las lecturas de las variables hidrológicas y meteorológicas, que son monitoreadas por la red de alerta y a través de las cuales, se generan las alertas en los ríos y los pronósticos de deslizamientos e incendios para el país.   Las variables que se monitorean son: nivel del rio, temperatura seca, temperatura máxima, temperatura mínima, precipitación y fenómenos atmosféricos.
