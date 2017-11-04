@@ -38,9 +38,9 @@ public class RegistrarNivel extends AppCompatActivity {
     private void initInstances() {
         toolbar = findViewById(R.id.toolbarRegistroLecturasNivel);
         toolbar.setTitle(R.string.ingresar_lecturas);
-    setSupportActionBar(toolbar);
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-}
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
     public void getLectureFechaHora() {
         Intent intent = getIntent();
@@ -63,6 +63,8 @@ public class RegistrarNivel extends AppCompatActivity {
     }
 
     public void enviarNivel(View view) {
+        Intent intent = new Intent(this, MainHidrometoorologia.class);
+
         getNivel();
 
         dbHelper.open();
@@ -84,10 +86,14 @@ public class RegistrarNivel extends AppCompatActivity {
             lecturas.close();
         }
 
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     private void getNivel(){
           nivel = ((EditText)findViewById(R.id.nivel)).getText().toString();
           observaciones = ((EditText) findViewById(R.id.observaciones)).getText().toString();
     }
+
+
 }
