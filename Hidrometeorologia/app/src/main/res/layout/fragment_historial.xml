@@ -4,10 +4,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.jelie.hidrometeorologia.HistorialFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:id="@+id/historialList"
+        android:orientation="vertical"
+        android:layout_below="@+id/appBarLayout">
+    </ListView>
+
 
 </FrameLayout>

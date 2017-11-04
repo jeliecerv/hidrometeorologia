@@ -32,7 +32,17 @@
         android:id="@+id/rootLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/appBarLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
         >
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_below="@+id/appBarLayout" />
 
         <Button
             android:id="@+id/fabBtn"
@@ -44,14 +54,8 @@
             android:onClick="ingresarLecturas"
             android:src="@android:drawable/ic_input_add"
             android:text="@string/ingresar_lecturas" />
+
+
     </FrameLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_below="@+id/appBarLayout" />
-
 
 </LinearLayout>
