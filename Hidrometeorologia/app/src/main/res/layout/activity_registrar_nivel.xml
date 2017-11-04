@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.jelie.hidrometeorologia.RegistroLecturas">
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context="com.example.jelie.hidrometeorologia.RegistrarNivel">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbarRegistroLecturas"
+            android:id="@+id/toolbarRegistroLecturasNivel"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -22,28 +23,29 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <DatePicker
-        android:id="@+id/dpFechaLectura"
+    <EditText
+        android:id="@+id/nivel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:calendarViewShown="?android:attr/windowOverscan"
-        android:datePickerMode="spinner"
-        android:minWidth="15dp"/>
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/nivel"/>
 
-    <TimePicker
-        android:id="@+id/tpHoraLectura"
+    <EditText
+        android:id="@+id/observaciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:timePickerMode="spinner" />
+        android:inputType="text"
+        android:hint="@string/observaciones"/>
 
     <Button
-        android:id="@+id/fabBtn"
+        android:id="@+id/enviarNivel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
         android:elevation="4dp"
-        android:onClick="enviarFechaHora"
+        android:onClick="enviarNivel"
         android:src="@android:drawable/ic_input_add"
         android:text="@string/enviar"
         tools:ignore="OnClick" />
