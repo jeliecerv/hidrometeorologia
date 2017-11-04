@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Hidrometeorologia.iml" filepath="$PROJECT_DIR$/Hidrometeorologia.iml" />
+      <module fileurl="file://D:\Dirtrab\MAESTRIA\DlloMovil\hidrometeorologia\Hidrometeorologia\Hidrometeorologia.iml" filepath="D:\Dirtrab\MAESTRIA\DlloMovil\hidrometeorologia\Hidrometeorologia\Hidrometeorologia.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
