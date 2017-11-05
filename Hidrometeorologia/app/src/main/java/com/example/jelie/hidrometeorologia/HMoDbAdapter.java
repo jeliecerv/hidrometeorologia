@@ -36,12 +36,21 @@ import android.util.Log;
  */
 public class HMoDbAdapter {
 
+    public static final String KEY_ROWID = "_id";
+
+    // Atributos de lecturas
     public static final String KEY_FECHA = "fecha";
     public static final String KEY_HORA = "hora";
-    public static final String KEY_ROWID = "_id";
     public static final String KEY_VARIABLE = "variable";
     public static final String KEY_VALOR = "valor";
     public static final String KEY_OBSERVACIONES = "obser";
+
+    //Atributos de pagos
+    public static final String KEY_MES = "mes";
+    public static final String KEY_DIASREPORTE = "diasreporte";
+    public static final String KEY_VALORREPORTE = "valorreporte";
+    public static final String KEY_TOTALPAGADO = "totalpagado";
+    public static final String KEY_DEUDA = "deuda";
 
     private static final String TAG = "HMoDbAdapter";
     private DatabaseHelper mDbHelper;
@@ -55,9 +64,16 @@ public class HMoDbAdapter {
                     + "fecha text not null, hora text not null, variable text not null, valor text not null, "
                     + " obser text null);";
 
+    private static final String DATABASE_CREATE_PAGOS =
+            "create table pago (_id integer primary key autoincrement, "
+                    + "mes text not null, diasreporte text not null, valorreporte text not null, totalpagado text not null, "
+                    + " deuda text null);";
+
     private static final String DATABASE_NAME = "data";
     private static final String DATABASE_TABLE = "lectura";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
+
+    private static final String DATABASE_TABLE_PAGOS = "pago";
 
     private final Context mCtx;
 
@@ -71,13 +87,23 @@ public class HMoDbAdapter {
         public void onCreate(SQLiteDatabase db) {
 
             db.execSQL(DATABASE_CREATE);
+            db.execSQL(DATABASE_CREATE_PAGOS);
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
                     + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS notes");
+            db.execSQL("DROP TABLE IF EXISTS lectura");
+            db.execSQL("DROP TABLE IF EXISTS pago");
+            onCreate(db);
+        }
+
+        public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            Log.w(TAG, "Downgrade database from version " +
+                    oldVersion + " to " + newVersion);
+            db.execSQL("DROP TABLE IF EXISTS lectura");
+            db.execSQL("DROP TABLE IF EXISTS pago");
             onCreate(db);
         }
     }
@@ -177,5 +203,43 @@ public class HMoDbAdapter {
         return mCursor;
 
     }
+
+    public long createPago(String mes, String diasreporte, String valorreporte, String totalpagado, String deuda) {
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(KEY_MES, mes);
+        initialValues.put(KEY_DIASREPORTE, diasreporte);
+        initialValues.put(KEY_VALORREPORTE,   valorreporte);
+        initialValues.put(KEY_TOTALPAGADO, totalpagado);
+        initialValues.put(KEY_DEUDA, deuda);
+
+        return mDb.insert(DATABASE_TABLE_PAGOS, null, initialValues);
+    }
+
+    public boolean deletePago(long rowId) {
+
+        return mDb.delete(DATABASE_TABLE_PAGOS, KEY_ROWID + "=" + rowId, null) > 0;
+    }
+
+    public Cursor fetchAllPagos() {
+
+        return mDb.query(DATABASE_TABLE_PAGOS, new String[] {
+                KEY_ROWID, KEY_MES,
+                KEY_DIASREPORTE, KEY_VALORREPORTE, KEY_TOTALPAGADO, KEY_DEUDA}, null, null, null, null, null);
+    }
+
+    public Cursor fetchPago(long rowId) throws SQLException {
+
+        Cursor mCursor =
+
+                mDb.query(true, DATABASE_TABLE_PAGOS, new String[] {KEY_ROWID,
+                                KEY_MES, KEY_DIASREPORTE, KEY_VALORREPORTE, KEY_TOTALPAGADO, KEY_DEUDA}, KEY_ROWID + "=" + rowId, null,
+                        null, null, null, null);
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+
+    }
+
 
 }

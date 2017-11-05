@@ -22,7 +22,7 @@ public class PagosFragment extends Fragment {
     private ListView listView;
 
     Cursor pagos;
-    HMoPagosAdapter dbHelper;
+    HMoDbAdapter dbHelper;
 
     public PagosFragment() {
         // Required empty public constructor
@@ -33,8 +33,10 @@ public class PagosFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        dbHelper = new HMoPagosAdapter(getActivity());
+        dbHelper = new HMoDbAdapter(getActivity());
         dbHelper.open();
+
+        populatePagos();
     }
 
 
@@ -56,16 +58,17 @@ public class PagosFragment extends Fragment {
         SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(getActivity(),
                 R.layout.pagos_row,
                 pagos,
-                new String[]{HMoPagosAdapter.KEY_MES, HMoPagosAdapter.KEY_DIASREPORTE, HMoPagosAdapter.KEY_VALORREPORTE,HMoPagosAdapter.KEY_TOTALPAGADO, HMoPagosAdapter.KEY_DEUDA},
+                new String[]{HMoDbAdapter.KEY_MES, HMoDbAdapter.KEY_DIASREPORTE, HMoDbAdapter.KEY_VALORREPORTE,HMoDbAdapter.KEY_TOTALPAGADO, HMoDbAdapter.KEY_DEUDA},
                      new int[]{R.id.mes, R.id.diasreporte, R.id.valorreporte, R.id.totalpagado, R.id.deuda},0);
-        listView.setAdapter(cursorAdapter);}
+        listView.setAdapter(cursorAdapter);
+    }
 
-
-    public void listPagos() {
-//        ArrayAdapter<String> itemsAdapter =
-//                new ArrayAdapter<String>(this, R.layout.pagos_row, items);
-//
-//        listView.setAdapter(itemsAdapter);
+    private void populatePagos() {
+        dbHelper.open();
+        dbHelper.createPago("Enero 2017", "2", "50000", "5000", "45000");
+        dbHelper.createPago("Febrero 2017", "3", "60000", "6000", "54000");
+        dbHelper.createPago("Marzo 2017", "4", "70000", "7000", "63000");
+        dbHelper.createPago("Abril 2017", "5", "80000", "8000", "72000");
     }
 
 }
