@@ -58,8 +58,14 @@ public class PagosFragment extends Fragment {
         SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(getActivity(),
                 R.layout.pagos_row,
                 pagos,
-                new String[]{HMoDbAdapter.KEY_MES, HMoDbAdapter.KEY_DIASREPORTE, HMoDbAdapter.KEY_VALORREPORTE,HMoDbAdapter.KEY_TOTALPAGADO, HMoDbAdapter.KEY_DEUDA},
-                     new int[]{R.id.mes, R.id.diasreporte, R.id.valorreporte, R.id.totalpagado, R.id.deuda},0);
+                new String[]{
+                        HMoDbAdapter.KEY_MES,
+                        HMoDbAdapter.KEY_DIASREPORTE,
+                        HMoDbAdapter.KEY_VALORREPORTE,
+                        HMoDbAdapter.KEY_TOTALPAGADO,
+                        HMoDbAdapter.KEY_DEUDA
+                },
+                 new int[]{R.id.mes, R.id.diasreporte, R.id.valorreporte, R.id.totalpagado, R.id.deuda},0);
         listView.setAdapter(cursorAdapter);
     }
 
