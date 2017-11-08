@@ -11,15 +11,23 @@
         android:layout_margin="32dp"/>
 
     <TextView
-        android:id="@+id/hora"
+        android:id="@+id/nivel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="32dp"/>
-
+        android:layout_marginTop="32dp"
+        android:text="@string/nivelPunto"
+        android:textStyle="bold"/>
     <TextView
         android:id="@+id/valor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="32dp"/>
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="2dp"/>
+    <TextView
+        android:id="@+id/cm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="cm"/>
 
 </LinearLayout>

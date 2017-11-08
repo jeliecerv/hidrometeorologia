@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
+import java.util.Calendar;
+
 public class RegistroLecturas extends AppCompatActivity {
 
     private Toolbar toolbar;
@@ -42,19 +44,19 @@ public class RegistroLecturas extends AppCompatActivity {
     public void enviarFechaHora(View view) {
         Intent intent = new Intent(this, RegistrarNivel.class);
 
-        String[] lectura = getFechaHora();
+        long lectura = getFechaHora();
         intent.putExtra("lectura", lectura);
 
         startActivityForResult(intent, 1);
     }
 
-    public String[] getFechaHora() {
+    public long getFechaHora() {
         String[] lecturas = new String[2];
         DatePicker dpFechaLectura = findViewById(R.id.dpFechaLectura);
         TimePicker tpHoraLectura = findViewById(R.id.tpHoraLectura);
 
         int day = dpFechaLectura.getDayOfMonth();
-        int month = dpFechaLectura.getMonth() + 1;
+        int month = dpFechaLectura.getMonth();
         int year = dpFechaLectura.getYear();
 
         Log.i("Date Lectura", year+"-"+month+"-"+day);
@@ -62,11 +64,21 @@ public class RegistroLecturas extends AppCompatActivity {
         int hour = tpHoraLectura.getCurrentHour();
         int minute = tpHoraLectura.getCurrentMinute();
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(calendar.HOUR_OF_DAY, hour);
+        calendar.set(calendar.MINUTE, minute);
+        calendar.set(calendar.DAY_OF_MONTH, day);
+        calendar.set(calendar.MONTH, month);
+        calendar.set(calendar.YEAR, year);
+        long lfecha = calendar.getTimeInMillis();
+
+
+
         Log.i("Time Lectura", hour+":"+minute);
 
         lecturas[0] = year+"-"+month+"-"+day;
         lecturas[1] = hour+":"+minute;
 
-        return lecturas;
+        return lfecha;
     }
 }

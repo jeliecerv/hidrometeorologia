@@ -53,11 +53,11 @@ public class HistorialFragment extends Fragment {
     private void refresh() {
         lecturas = dbHelper.fetchAllLecturas();
         lecturas.moveToFirst();
-        SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(getActivity(),
+        MySimpleCursorAdapter cursorAdapter = new MySimpleCursorAdapter(getActivity(),
                 R.layout.lecturas_row,
                 lecturas,
-                new String[]{HMoDbAdapter.KEY_FECHA, HMoDbAdapter.KEY_HORA, HMoDbAdapter.KEY_VALOR},
-                new int[]{R.id.fecha, R.id.hora, R.id.valor},
+                new String[]{HMoDbAdapter.KEY_FECHA, HMoDbAdapter.KEY_VALOR},
+                new int[]{R.id.fecha, R.id.valor},
                 0);
         listView.setAdapter(cursorAdapter);
 

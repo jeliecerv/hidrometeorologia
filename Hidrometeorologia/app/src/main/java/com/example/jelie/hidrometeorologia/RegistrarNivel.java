@@ -14,8 +14,7 @@ import android.widget.EditText;
 public class RegistrarNivel extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private String fecha;
-    private String hora;
+    private long fecha;
     private String nivel;
     private String observaciones;
     public static final String VARIABLE_NIVEL = "nivel";
@@ -44,12 +43,9 @@ public class RegistrarNivel extends AppCompatActivity {
 
     public void getLectureFechaHora() {
         Intent intent = getIntent();
-        String[] lectura = intent.getStringArrayExtra("lectura");
+        long lectura = intent.getLongExtra("lectura", 0L);
 
-        fecha = lectura[0];
-        hora = lectura[1];
-
-        Log.i("lectura", lectura[0] +"-----"+lectura[1]);
+        fecha = lectura;
     }
 
     @Override
@@ -68,7 +64,7 @@ public class RegistrarNivel extends AppCompatActivity {
         getNivel();
 
         dbHelper.open();
-        dbHelper.createLectura(fecha, hora, VARIABLE_NIVEL, nivel, observaciones);
+        dbHelper.createLectura(fecha, VARIABLE_NIVEL, nivel, observaciones);
 
         lecturas = dbHelper.fetchAllLecturas();
         lecturas.moveToFirst();
@@ -77,7 +73,6 @@ public class RegistrarNivel extends AppCompatActivity {
             while (lecturas.moveToNext()) {
                 Log.i(lecturas.getColumnName(0), String.valueOf(lecturas.getInt(lecturas.getColumnIndexOrThrow(HMoDbAdapter.KEY_ROWID))));
                 Log.i(lecturas.getColumnName(1), lecturas.getString(lecturas.getColumnIndexOrThrow(HMoDbAdapter.KEY_FECHA)));
-                Log.i(lecturas.getColumnName(1), lecturas.getString(lecturas.getColumnIndexOrThrow(HMoDbAdapter.KEY_HORA)));
                 Log.i(lecturas.getColumnName(1), lecturas.getString(lecturas.getColumnIndexOrThrow(HMoDbAdapter.KEY_VARIABLE)));
                 Log.i(lecturas.getColumnName(1), lecturas.getString(lecturas.getColumnIndexOrThrow(HMoDbAdapter.KEY_VALOR)));
                 Log.i(lecturas.getColumnName(1), lecturas.getString(lecturas.getColumnIndexOrThrow(HMoDbAdapter.KEY_OBSERVACIONES)));

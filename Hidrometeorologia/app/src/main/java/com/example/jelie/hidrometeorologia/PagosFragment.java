@@ -71,10 +71,10 @@ public class PagosFragment extends Fragment {
 
     private void populatePagos() {
         dbHelper.open();
-        dbHelper.createPago("Enero 2017", "2", "50000", "5000", "45000");
-        dbHelper.createPago("Febrero 2017", "3", "60000", "6000", "54000");
-        dbHelper.createPago("Marzo 2017", "4", "70000", "7000", "63000");
-        dbHelper.createPago("Abril 2017", "5", "80000", "8000", "72000");
+        dbHelper.createPago("Enero", "2", "50000", "5000", "45000");
+        dbHelper.createPago("Febrero", "3", "60000", "6000", "54000");
+        dbHelper.createPago("Marzo", "4", "70000", "7000", "63000");
+        dbHelper.createPago("Abril", "5", "80000", "8000", "72000");
     }
 
 }

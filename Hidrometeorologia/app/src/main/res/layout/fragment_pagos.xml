@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jelie.hidrometeorologia.PagosFragment">
+    tools:context="com.example.jelie.hidrometeorologia.PagosFragment"
+    android:paddingBottom="50dp">
 
     <ListView
         android:layout_width="match_parent"

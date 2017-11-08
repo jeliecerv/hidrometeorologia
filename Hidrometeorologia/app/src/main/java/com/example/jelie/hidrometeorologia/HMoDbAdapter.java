@@ -39,6 +39,7 @@ public class HMoDbAdapter {
     public static final String KEY_ROWID = "_id";
 
     // Atributos de lecturas
+
     public static final String KEY_FECHA = "fecha";
     public static final String KEY_HORA = "hora";
     public static final String KEY_VARIABLE = "variable";
@@ -61,7 +62,7 @@ public class HMoDbAdapter {
      */
     private static final String DATABASE_CREATE =
             "create table lectura (_id integer primary key autoincrement, "
-                    + "fecha text not null, hora text not null, variable text not null, valor text not null, "
+                    + "fecha real not null, variable text not null, valor text not null, "
                     + " obser text null);";
 
     private static final String DATABASE_CREATE_PAGOS =
@@ -71,7 +72,7 @@ public class HMoDbAdapter {
 
     private static final String DATABASE_NAME = "data";
     private static final String DATABASE_TABLE = "lectura";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     private static final String DATABASE_TABLE_PAGOS = "pago";
 
@@ -144,16 +145,14 @@ public class HMoDbAdapter {
      * a -1 to indicate failure.
      * 
      * @param fecha the title of the note
-     * @param hora the body of the note
      * @param variable
      * @param valor
      * @param obser
      * @return rowId or -1 if failed
      */
-    public long createLectura(String fecha, String hora, String variable, String valor, String obser) {
+    public long createLectura(long fecha, String variable, String valor, String obser) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_FECHA, fecha);
-        initialValues.put(KEY_HORA, hora);
         initialValues.put(KEY_VARIABLE,   variable);
         initialValues.put(KEY_VALOR, valor);
         initialValues.put(KEY_OBSERVACIONES, obser);
@@ -180,7 +179,7 @@ public class HMoDbAdapter {
     public Cursor fetchAllLecturas() {
 
         return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_FECHA,
-                KEY_HORA, KEY_VALOR, KEY_VARIABLE, KEY_OBSERVACIONES}, null, null, null, null, null);
+                KEY_VALOR, KEY_VARIABLE, KEY_OBSERVACIONES}, null, null, null, null, null);
     }
 
     /**
@@ -195,7 +194,7 @@ public class HMoDbAdapter {
         Cursor mCursor =
 
                 mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                        KEY_FECHA, KEY_HORA, KEY_VALOR, KEY_VARIABLE, KEY_OBSERVACIONES}, KEY_ROWID + "=" + rowId, null,
+                        KEY_FECHA, KEY_VALOR, KEY_VARIABLE, KEY_OBSERVACIONES}, KEY_ROWID + "=" + rowId, null,
                         null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();

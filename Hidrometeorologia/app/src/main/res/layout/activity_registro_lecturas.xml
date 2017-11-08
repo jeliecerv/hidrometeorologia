@@ -22,30 +22,50 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <TextView
+        android:id="@+id/textdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccione una fecha para la lectura:"
+        android:gravity="center"
+        android:textStyle="bold"/>
     <DatePicker
         android:id="@+id/dpFechaLectura"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:calendarViewShown="?android:attr/windowOverscan"
         android:datePickerMode="spinner"
-        android:minWidth="15dp"/>
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:layout_marginBottom="-15dp"
+        />
 
+    <TextView
+        android:id="@+id/texthour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccione una hora para la lectura:"
+        android:gravity="center"
+        android:textStyle="bold"/>
     <TimePicker
         android:id="@+id/tpHoraLectura"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:timePickerMode="spinner" />
+        android:timePickerMode="spinner"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:layout_marginBottom="-15dp"/>
 
     <Button
         android:id="@+id/fabBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
         android:elevation="4dp"
         android:onClick="enviarFechaHora"
         android:src="@android:drawable/ic_input_add"
         android:text="@string/enviar"
-        tools:ignore="OnClick" />
+        tools:ignore="OnClick"/>
 
 </LinearLayout>
